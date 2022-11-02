@@ -1,3 +1,9 @@
+This is a fork of `prettier-plugin-latex` from
+[siefkenj/unified-latex](https://github.com/siefkenj/unified-latex)
+with some different opinions 😉
+
+Below is the `README` from the upstream repository (with minor edits).
+
 # unified-latex
 
 Monorepo for `@unified-latex` packages.
@@ -107,4 +113,3 @@ in the local playground repository. This will mirror your development version of
 
   * Some code was borrowed from Michael Brade's `LaTeX.js` project https://github.com/michael-brade/LaTeX.js
   * Prettier is a code-formatting library https://prettier.io/
-
