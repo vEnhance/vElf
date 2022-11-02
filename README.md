@@ -2,7 +2,9 @@ This is a fork of `prettier-plugin-latex` from
 [siefkenj/unified-latex](https://github.com/siefkenj/unified-latex)
 with some different opinions 😉
 
-Below is the `README` from the upstream repository (with minor edits).
+Below is the `README` from the upstream monorepo.
+The only change in the fork is that `packages/unified-latex-prettier`
+has been replaced by `packages/unified-latex-velf`.
 
 # unified-latex
 
