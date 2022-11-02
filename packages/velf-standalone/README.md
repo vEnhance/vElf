@@ -1,83 +1,29 @@
-# prettier-plugin-latex
+# velf-standalone
 
-A prettier plugin for formatting LaTeX documents. You can try it out online in the [playground](https://siefkenj.github.io/latex-parser-playground/)
+Thin wrapper around the standalone `@unified-latex/unified-latex-velf`,
+forked by vEnhance when he had better things to do but was sick of fixing
+``$$ ... $$`` like freaking everywhere.
 
 ## Intro
 
-Prettier is an opinionated code formatter. It enforces a consistent style by parsing your code and re-printing it with its own rules that take the maximum line length into account, wrapping code when necessary.
+Prettier is an opinionated code formatter.
+It enforces a consistent style by parsing your code and
+re-printing it with its own rules that take the maximum line length into account,
+wrapping code when necessary.
 
-This plugin adds support for the LaTex to Prettier. While TeX itself cannot be parsed without being executed, `prettier-plugin-latex` makes the assumption that your document uses "standard" LaTeX, and parses it to the best of its ability.
-
-### Input
-
-```latex
-\begin{enumerate}
-    \item[55,4] Hi there
-\item$e^2$ is math mode! \[\begin{matrix}12&3^e\\pi&0\end{matrix}\]
-\end{enumerate}
-```
-
-### Output
-
-```latex
-\begin{enumerate}
-	\item[55,4] Hi there
-
-	\item $e^{2}$ is math mode!
-		\[
-			\begin{matrix}
-				12 & 3^e \\
-				pi & 0
-			\end{matrix}
-		\]
-\end{enumerate}
-```
-
-## Install
-
-yarn:
-
-```bash
-yarn add --dev prettier prettier-plugin-latex
-# or globally
-yarn global add prettier prettier-plugin-latex
-```
-
-npm:
-
-```bash
-npm install --save-dev prettier prettier-plugin-latex
-# or globally
-npm install --global prettier prettier-plugin-latex
-```
+This plugin adds support for the LaTex to Prettier.
+While TeX itself cannot be parsed without being executed,
+`prettier-plugin-latex` makes the assumption that your document uses "standard" LaTeX,
+and parses it to the best of its ability.
 
 ## Use
 
-### With Node.js
+### With Prettier
 
-If you installed prettier as a local dependency, you can add prettier as a
-script in your `package.json`,
-
-```json
-{
-    "scripts": {
-        "prettier": "prettier"
-    }
-}
-```
-
-and then run it via
+After cloning this repository, do
 
 ```bash
-yarn run prettier path/to/file.tex --write
-# or
-npm run prettier path/to/file.tex --write
-```
-
-If you installed globally, run
-
-```bash
-prettier path/to/file.tex --write
+prettier --plugin=/path/to/velf/packages/velf-standalone/ sample.tex
 ```
 
 ### In the Browser
@@ -110,20 +56,4 @@ To develop, run
 npm run watch
 ```
 
-You can then execute Prettier with
-
-```
-prettier --plugin-search-dir=./ ...
-```
-
-or
-
-```
-prettier --plugin=./dist/prettier-plugin-latex.js ...
-```
-
-and the LaTeX plugin will load from the current directory.
-
-### Code structure
-
-`prettier-plugin-latex` uses the [latex-ast-parser](https://github.com/siefkenj/latex-parser) library to parse the latex file and convert it to a prettier AST. This library is just a thin layer over `latex-ast-parser`
+You can then execute Prettier as above.
