@@ -12,6 +12,6 @@
         { "path": "../unified-latex-util-render-info" },
         { "path": "../unified-latex-util-arguments" },
         { "path": "../unified-latex-util-visit" },
-        { "path": "../unified-latex-prettier" }
+        { "path": "../unified-latex-velf" }
     ]
 }

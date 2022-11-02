@@ -1,6 +1,6 @@
 import Prettier from "prettier/standalone";
 import { Plugin } from "unified";
-import { printLatexAst } from "@unified-latex/unified-latex-prettier";
+import { printLatexAst } from "@unified-latex/unified-latex-velf";
 import * as Ast from "@unified-latex/unified-latex-types";
 import { printRaw } from "@unified-latex/unified-latex-util-print-raw";
 

@@ -4,7 +4,7 @@ import "../../test-common";
 
 /* eslint-env jest */
 
-describe("unified-latex-prettier", () => {
+describe("unified-latex-velf", () => {
     const formatter = (x: string) =>
         Prettier.format(x, {
             printWidth: 30,

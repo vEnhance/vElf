@@ -1,5 +1,5 @@
 import Prettier from "prettier/standalone";
-import { prettierPluginLatex } from "../../unified-latex-prettier";
+import { prettierPluginLatex } from "../../unified-latex-velf";
 import "../../test-common";
 
 /* eslint-env jest */
