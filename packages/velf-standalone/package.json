@@ -1,0 +1,68 @@
+{
+    "name": "@unified-latex/velf-standalone",
+    "version": "2.0.0",
+    "description": "fuck javascript",
+    "main": "dist/index.js",
+    "type": "module",
+    "dependencies": {
+        "@unified-latex/unified-latex-velf": "^2.0.0"
+    },
+    "files": [
+        "dist/**/*.ts",
+        "dist/**/*.js",
+        "dist/**/*.map",
+        "dist/**/*.json"
+    ],
+    "exports": {
+        ".": {
+            "import": "./dist/index.js",
+            "require": "./dist/index.cjs"
+        },
+        "./*js": "./dist/*js",
+        "./*": {
+            "import": "./dist/*.js",
+            "require": "./dist/*.cjs"
+        }
+    },
+    "scripts": {
+        "build": "npm run clean && mkdirp ./dist && npm run compile",
+        "clean": "rm -rf ./dist && rm -rf tsconfig.tsbuildinfo",
+        "compile": "tsc -b tsconfig.json & node build.js & wait",
+        "package": "node ../../scripts/make-package.mjs",
+        "publish": "cd dist && npm publish",
+        "prettier": "prettier"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/vEnhance/velf.git"
+    },
+    "keywords": [
+        "pegjs",
+        "latex",
+        "parser",
+        "prettier",
+        "unified-latex",
+        "unified"
+    ],
+    "author": "Jason Siefken",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/vEnhance/velf/issues"
+    },
+    "homepage": "https://github.com/vEnhance/velf#readme",
+    "private": true,
+    "devDependencies": {
+        "@babel/core": "7.14.3",
+        "@babel/preset-env": "7.14.4",
+        "babel-loader": "8.2.2",
+        "eslint": "^7.28.0",
+        "jsdom": "^16.6.0",
+        "mkdirp": "1.0.4",
+        "prettier": "^3.0.0-alpha.4",
+        "resolve-cwd": "^3.0.0",
+        "ts-loader": "^9.2.3",
+        "typescript": "^4.3.2",
+        "webpack": "5.38.1",
+        "webpack-cli": "^4.10.0"
+    }
+}
