@@ -7,17 +7,33 @@ import * as Ast from "@unified-latex/unified-latex-types";
 export function printMacro(
     path: PrettierTypes.AstPath,
     print: PrettierTypes.RecursivePrintFunc,
-    options: any
+    options: any,
 ): Doc {
     const node = path.getNode() as Ast.Macro;
     const { renderInfo, previousNode, nextNode, referenceMap } = getNodeInfo(
         node,
-        options
+        options,
     );
 
     const content =
         (node.escapeToken != null ? node.escapeToken : ESCAPE) + node.content;
     const args = node.args ? path.map(print, "args" as any) : [];
+
+    // Special case: _{x} and ^{x} if x is one-char
+    if (
+        (node.content === "^" || node.content === "_") &&
+        node.args !== undefined &&
+        node.args.length === 1
+    ) {
+        const arg = node.args[0];
+        if (
+            arg.content.length === 1 &&
+            arg.content[0].type === "string" &&
+            /[a-zA-Z]/.test(arg.content[0].content)
+        ) {
+            return [content, arg.content[0].content];
+        }
+    }
 
     // Some of the arguments want to be printed "inline".
     // We loop through the arguments and unwrap the inline ones.

@@ -25,12 +25,12 @@ import { trim } from "@unified-latex/unified-latex-util-trim";
 export function printArgument(
     path: PrettierTypes.AstPath,
     print: PrettierTypes.RecursivePrintFunc,
-    options: any
+    options: any,
 ): Doc {
     const node = path.getNode() as Ast.Argument;
     const { renderInfo, previousNode, nextNode, referenceMap } = getNodeInfo(
         node,
-        options
+        options,
     );
 
     // We can return early for empty arguments (this is common for omitted optional arguments)
@@ -57,6 +57,14 @@ export function printArgument(
         // In paragraph node, arguments should flow just like text
         rawRet = [openMark, ...content, closeMark];
     }
+    if (
+        node.content.length === 1 &&
+        node.content[0].type === "string" &&
+        /[0-9]/.test(node.content[0].content)
+    ) {
+        // Single digit arguments don't need curly braces
+        return [...content];
+    }
     if (referenceMap) {
         // Save the raw rendered data in case a renderer higher up
         // wants to unwrap it
@@ -67,7 +75,7 @@ export function printArgument(
         const parentNode = path.getParentNode();
         const { renderInfo: parentRenderInfo } = getNodeInfo(
             parentNode,
-            options
+            options,
         );
         if (parentRenderInfo.pgfkeysArgs) {
             const leadingComment =
@@ -105,7 +113,7 @@ function printPgfkeysArgument(
         openMark: string;
         closeMark: string;
         leadingComment: Ast.Comment | null | undefined;
-    }
+    },
 ): Doc {
     const parsed = parsePgfkeys(nodes);
 
@@ -118,8 +126,8 @@ function printPgfkeysArgument(
             // of "\n"
             const parts = part.itemParts.map((node) =>
                 printRaw(node, { asArray: true }).map((token) =>
-                    token === linebreak ? hardline : token
-                )
+                    token === linebreak ? hardline : token,
+                ),
             );
             const row = join("=", parts);
             content.push(row);
@@ -141,7 +149,7 @@ function printPgfkeysArgument(
                 // so print the comment directly without any newlines
                 "%",
                 part.trailingComment.content,
-                breakParent
+                breakParent,
             );
         }
 
