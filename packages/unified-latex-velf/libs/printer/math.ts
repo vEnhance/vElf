@@ -51,20 +51,9 @@ export function printDisplayMath(
     content = formatDocArray(node.content, content, options);
     content = joinWithSoftline(content);
 
-    // If we start with a comment on the same line as the environment
-    // We should not insert a newline at the start of the environment body
-    const bodyStartToken: PrettierTypes.Doc[] = [hardline];
-    if (
-        node.content.length === 0 ||
-        (node.content[0].type === "comment" && node.content[0].sameline)
-    ) {
-        bodyStartToken.pop();
-    }
-
     return [
-        ESCAPE + "[",
-        indent(fill(bodyStartToken.concat(content))),
-        hardline,
-        ESCAPE + "]",
+        ESCAPE + "[ ",
+        fill(content),
+        " " + ESCAPE + "]",
     ];
 }
