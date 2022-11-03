@@ -59,10 +59,11 @@ export function printEnvironment(
         bodyStartToken.pop();
     }
 
+    const body = fill(bodyStartToken.concat(content));
     return [
         env.start,
         ...args,
-        indent(fill(bodyStartToken.concat(content))),
+        (env.start === ESCAPE + 'begin{document}') ? body : indent(body),
         hardline,
         env.end,
     ];
