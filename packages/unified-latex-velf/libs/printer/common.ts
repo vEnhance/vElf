@@ -32,7 +32,7 @@ export function formatEnvSurround(node: Ast.Environment) {
 
 /**
  * Determine if `elm` is a line type (softline/hardline/etc). If `elm` is an
- * array or a concat, the first element is checked.
+ * array, the first element is checked.
  */
 function isLineType(elm: Doc): boolean {
     if (elm == null || typeof elm === "string") {
@@ -40,9 +40,6 @@ function isLineType(elm: Doc): boolean {
     }
     if (Array.isArray(elm)) {
         return isLineType(elm[0]);
-    }
-    if (elm.type === "concat") {
-        return isLineType(elm.parts);
     }
     return elm.type === "line";
 }

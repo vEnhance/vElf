@@ -28,6 +28,7 @@ export function printRoot(
     const content = path.map(print, "content");
     const rawContent = formatDocArray(node.content, content, options);
 
-    const concatFunction = hasPreambleCode(node.content) ? (x: any) => x : fill;
-    return concatFunction(rawContent);
+    // const concatFunction = hasPreambleCode(node.content) ? (x: any) => x : fill;
+    // return concatFunction(rawContent);
+    return fill(rawContent);
 }
