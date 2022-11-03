@@ -29,5 +29,5 @@ module.exports = {
   ],
 
   // Consistency with the rest of the monorepo
-  tabWidth: "4",
+  tabWidth: 4,
 };
