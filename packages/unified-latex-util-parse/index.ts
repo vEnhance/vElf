@@ -5,6 +5,8 @@ export * from "./libs/parse-minimal";
 export * from "./libs/parse";
 export * from "./libs/parse-math";
 
+export { parse } from "./libs/parse";
+
 // NOTE: The docstring comment must be the last item in the index.ts file!
 /**
  * ## What is this?
